@@ -25,12 +25,12 @@ const MILESTONES = [
     cert:    true,
   },
   {
-    year:    '2023 – Present',
+    year:    '2023 – 2025',
     degree:  'Master of Computer Applications',
     inst:    'MES College of Engineering, Kuttippuram',
     board:   'APJ Abdul Kalam Technological University',
     side:    'from-right',
-    current: true,
+    graduated: true,
   },
 ]
 
@@ -57,7 +57,7 @@ export function EducationSection() {
 
             {/* dashed vertical connector */}
             <span className="tl-connector">
-              <span className={`tl-dot ${m.current ? 'current' : m.cert ? 'cert' : ''}`} />
+              <span className={`tl-dot ${m.current ? 'current' : m.cert ? 'cert' : m.graduated ? 'current' : ''}`} />
               <span className="tl-vline" />
             </span>
 
@@ -65,8 +65,9 @@ export function EducationSection() {
               <span className="tl-degree">{m.degree}</span>
               <span className="tl-inst">{m.inst}</span>
               <span className="tl-board">{m.board}</span>
-              {m.current && <span className="tl-badge">● Ongoing</span>}
-              {m.cert    && <span className="tl-badge cert">✓ Certified</span>}
+              {m.current    && <span className="tl-badge">● Ongoing</span>}
+              {m.graduated  && <span className="tl-badge">✓ MCA Graduate</span>}
+              {m.cert       && <span className="tl-badge cert">✓ Certified</span>}
             </span>
           </li>
         ))}
