@@ -1,0 +1,592 @@
+/* ================================================================
+   FAZIL FIROZ — AUTHENTIC NOTEBOOK PORTFOLIO
+   Core principle: everything snaps to the 44px ruled-line grid.
+   Text sits ON the lines. No cards. Pure handwriting on paper.
+   ================================================================ */
+
+/* ──────────────────────────────────────────────────────────────
+   1.  DESIGN TOKENS
+   ────────────────────────────────────────────────────────────── */
+:root {
+  --line:       44px;          /* ruled line height – single source of truth */
+  --paper:      #f5f1e8;       /* warm cream notebook paper                  */
+  --ink:        #1e2236;       /* deep navy – fountain pen ink               */
+  --ink-mid:    #2d3660;       /* slightly lighter ink for body text         */
+  --ink-blue:   #1e3a8a;       /* royal blue – highlights / links            */
+  --ink-red:    #b91c1c;       /* red ink – margin line / accents            */
+  --ink-green:  #166534;       /* green – current / success markers          */
+  --ink-gray:   #6b7280;       /* pencil gray – labels, meta                 */
+
+  --margin-x:   90px;          /* x position of the red left margin          */
+  --spine-w:    52px;          /* binder spine / punch-hole strip width      */
+  --write-l:    calc(var(--margin-x) + 32px);  /* where writing begins       */
+  --write-r:    52px;
+
+  --font-hw:    'Caveat', cursive;   /* primary handwriting font             */
+  --font-body:  'Kalam',  cursive;   /* secondary – body paragraphs          */
+}
+
+/* ──────────────────────────────────────────────────────────────
+   2.  GLOBAL RESET
+   ────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+a    { color: inherit; text-decoration: none; }
+
+/* ──────────────────────────────────────────────────────────────
+   3.  BODY = THE NOTEBOOK PAGE
+       The ruled lines and red margin live here so they are
+       perfectly continuous as the user scrolls.
+   ────────────────────────────────────────────────────────────── */
+body {
+  font-family: var(--font-hw);
+  font-size:   22px;
+  line-height: var(--line);     /* every text line = one ruled line */
+  color:       var(--ink);
+  background-color: var(--paper);
+  background-image:
+    /* ── red left margin ─────────────────────────────── */
+    linear-gradient(to right,
+      transparent calc(var(--margin-x) - 1px),
+      rgba(185,28,28,0.52) calc(var(--margin-x) - 1px),
+      rgba(185,28,28,0.52) calc(var(--margin-x) + 1px),
+      transparent calc(var(--margin-x) + 1px)
+    ),
+    /* ── horizontal ruled lines ──────────────────────── */
+    repeating-linear-gradient(to bottom,
+      transparent 0,
+      transparent calc(var(--line) - 1px),
+      rgba(30,34,54,0.11) calc(var(--line) - 1px),
+      rgba(30,34,54,0.11) var(--line)
+    );
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   4.  FIXED BINDER SPINE (punch holes that scroll with page)
+   ────────────────────────────────────────────────────────────── */
+.nb-spine {
+  position:       fixed;
+  top: 0; left: 0; bottom: 0;
+  width:          var(--spine-w);
+  z-index:        300;
+  pointer-events: none;
+  /* repeating hole dots */
+  background-image:
+    radial-gradient(circle at 26px 22px, #c4bfb5 9px, transparent 9px),
+    radial-gradient(circle at 26px 22px, rgba(0,0,0,0.1) 11px, transparent 11px);
+  background-size:   var(--spine-w) 132px;   /* one hole every 3 lines */
+  background-repeat: repeat-y;
+  background-color:  transparent;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   5.  LOADER
+   ────────────────────────────────────────────────────────────── */
+.loader-screen {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--paper);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 16px;
+}
+.loader-title {
+  font-family: var(--font-hw); font-size: 2.6rem; font-weight: 700;
+  color: var(--ink); opacity: 0.55;
+  animation: loaderPulse 1.6s ease-in-out infinite;
+}
+.loader-bar-wrap {
+  width: 200px; height: 2px;
+  background: rgba(0,0,0,0.08); border-radius: 99px; overflow: hidden;
+}
+.loader-bar {
+  height: 100%; background: var(--ink);
+  border-radius: 99px; transition: width 0.1s linear;
+}
+.loader-pct {
+  font-family: var(--font-hw); font-size: 1rem; color: var(--ink-gray);
+}
+
+/* ──────────────────────────────────────────────────────────────
+   6.  HERO SECTION (canvas scroll-animation)
+   ────────────────────────────────────────────────────────────── */
+.scroll-container { height: 600vh; position: relative; }
+
+.sticky-canvas-wrap {
+  position: sticky; top: 0;
+  width: 100%; height: 100vh; overflow: hidden;
+}
+.anim-canvas { display: block; width: 100%; height: 100%; }
+
+/* "Hi" overlay */
+.hi-overlay {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding-left: 8vw; pointer-events: none;
+}
+.hi-overlay.hi-visible {
+  opacity: 1; transform: translateY(0);
+  transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.34,1.56,0.64,1);
+}
+.hi-overlay.hi-hidden {
+  opacity: 0; transform: translateY(-22px);
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+.hi-letter {
+  font-family: var(--font-hw);
+  font-size: clamp(7rem,18vw,13rem); font-weight: 700;
+  color: var(--ink); line-height: 1;
+  transform: rotate(-2.5deg); display: inline-block;
+  filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.13));
+  animation: writeIn 0.9s cubic-bezier(0.22,1,0.36,1) both;
+}
+.scroll-hint {
+  margin-top: 16px;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  animation: fadeUp 1.5s ease 0.7s both;
+}
+.scroll-hint-text {
+  font-family: var(--font-hw); font-size: 1.3rem; color: var(--ink);
+  opacity: 0.38; letter-spacing: 2px; transform: rotate(-1deg);
+}
+.scroll-arrow {
+  font-size: 1.4rem; color: var(--ink); opacity: 0.28;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   7.  NOTEBOOK SECTION
+       Transparent background — body's ruled lines show through.
+       Padding is always a multiple of --line so text stays on grid.
+   ────────────────────────────────────────────────────────────── */
+.nb-section {
+  position: relative;
+  min-height: 100vh;
+  padding-top:    calc(var(--line) * 2);    /* 88px  → 2 blank lines   */
+  padding-bottom: calc(var(--line) * 3);    /* 132px → 3 blank lines   */
+  padding-left:   var(--write-l);
+  padding-right:  var(--write-r);
+}
+
+/* thin top separator line between sections */
+.nb-section + .nb-section::before {
+  content: '';
+  position: absolute; top: 0; left: var(--margin-x); right: 0;
+  height: 2px;
+  background: repeating-linear-gradient(
+    to right, rgba(30,34,54,0.15) 0, rgba(30,34,54,0.15) 6px,
+    transparent 6px, transparent 12px
+  );
+}
+
+/* ──────────────────────────────────────────────────────────────
+   8.  WORD-BY-WORD WRITE-IN ANIMATION
+   ────────────────────────────────────────────────────────────── */
+.word-wrap { display: inline; }
+
+.word {
+  opacity: 0;
+  display: inline-block;
+  transform: translateY(4px);
+  transition: opacity 0.3s ease var(--d,0s), transform 0.3s ease var(--d,0s);
+}
+.nb-section.visible .word { opacity: 1; transform: translateY(0); }
+
+/* ──────────────────────────────────────────────────────────────
+   9.  SECTION HEADING
+       Sits on ONE ruled line (line-height: var(--line)).
+   ────────────────────────────────────────────────────────────── */
+.section-heading {
+  font-family: var(--font-hw);
+  font-size:   38px;
+  font-weight: 700;
+  line-height: var(--line);              /* exactly one grid line  */
+  color:       var(--ink);
+  display:     block;
+  transform:   rotate(-0.8deg);
+  margin-bottom: 0;
+  position:    relative;
+}
+/* hand-drawn underline — uses the very next ruled line */
+.section-heading::after {
+  content: '';
+  display: block;
+  height: 2px;
+  width: 0;
+  background: var(--ink-red);
+  border-radius: 2px;
+  margin-top: 6px;
+  transition: width 0.8s cubic-bezier(0.22,1,0.36,1) 0.2s;
+}
+.nb-section.visible .section-heading::after { width: 100%; }
+
+/* blank line after heading (one grid line) */
+.heading-gap { display: block; height: var(--line); }
+
+/* ──────────────────────────────────────────────────────────────
+   10. ABOUT SECTION
+   ────────────────────────────────────────────────────────────── */
+.about-role {
+  font-family: var(--font-hw); font-size: 22px; line-height: var(--line);
+  color: var(--ink-blue);
+  display: block;
+  opacity: 0; transform: translateX(0);
+  transition: opacity 0.45s ease 0.15s;
+}
+.nb-section.visible .about-role { opacity: 1; }
+
+.about-body { max-width: 800px; }
+
+.about-para {
+  font-family: var(--font-hw);
+  font-size:   22px;
+  line-height: var(--line);
+  color:       var(--ink-mid);
+  display:     block;
+  margin-bottom: 0;
+}
+
+/* contact row — each item on its own line */
+.about-contacts {
+  display: block;
+  margin-top: calc(var(--line) * 1);    /* one blank line gap */
+}
+.about-contact-item {
+  font-family: var(--font-hw); font-size: 22px; line-height: var(--line);
+  color: var(--ink-blue);
+  display: block;
+  text-decoration: none;
+  opacity: 0; transform: translateX(-8px);
+  transition: opacity 0.4s ease var(--d,0s), transform 0.4s ease var(--d,0s);
+}
+.nb-section.visible .about-contact-item { opacity: 1; transform: translateX(0); }
+.about-contact-item:hover { color: var(--ink-red); text-decoration: underline dotted; }
+
+/* ──────────────────────────────────────────────────────────────
+   11. EXPERIENCE SECTION
+   ────────────────────────────────────────────────────────────── */
+.exp-entry {
+  margin-bottom: calc(var(--line) * 1);
+  opacity: 0; transform: translateX(-16px);
+  transition: opacity 0.55s ease var(--d,0s), transform 0.55s ease var(--d,0s);
+}
+.nb-section.visible .exp-entry { opacity: 1; transform: translateX(0); }
+
+.exp-company-line {
+  font-family: var(--font-hw); font-size: 28px; font-weight: 700;
+  line-height: var(--line);
+  color: var(--ink);
+  display: flex; justify-content: space-between; align-items: baseline;
+  flex-wrap: wrap; gap: 8px;
+}
+.exp-date-badge {
+  font-family: var(--font-hw); font-size: 18px; font-weight: 400;
+  color: var(--ink-green); line-height: var(--line);
+  letter-spacing: 0.5px;
+}
+.exp-role-line {
+  font-family: var(--font-hw); font-size: 20px;
+  line-height: var(--line); color: var(--ink-blue);
+  display: block; font-style: italic;
+}
+.exp-divider {
+  display: block; height: var(--line);   /* blank line */
+}
+
+.exp-bullets { list-style: none; }
+.exp-bullet {
+  display:       flex;
+  align-items:   flex-start;
+  gap:           12px;
+  font-family:   var(--font-hw);
+  font-size:     21px;
+  line-height:   var(--line);
+  color:         var(--ink-mid);
+  opacity:       0; transform: translateX(-10px);
+  transition:    opacity 0.38s ease var(--d,0s), transform 0.38s ease var(--d,0s);
+}
+.nb-section.visible .exp-bullet { opacity: 1; transform: translateX(0); }
+.exp-bullet-mark { color: var(--ink-red); flex-shrink: 0; line-height: var(--line); }
+
+/* ──────────────────────────────────────────────────────────────
+   12. EDUCATION — HANDWRITTEN ROADMAP
+   ────────────────────────────────────────────────────────────── */
+.edu-intro {
+  font-family: var(--font-hw); font-size: 22px;
+  line-height: var(--line); color: var(--ink-gray);
+  display: block;
+  opacity: 0; transition: opacity 0.45s ease 0.3s;
+}
+.nb-section.visible .edu-intro { opacity: 1; }
+
+.timeline-list { list-style: none; }
+
+.tl-item {
+  display: grid;
+  grid-template-columns: 140px auto 1fr;
+  align-items: start;
+  gap: 0 16px;
+  opacity: 0;
+  transition: opacity 0.55s ease var(--d,0s), transform 0.55s ease var(--d,0s);
+}
+.tl-item.from-left  { transform: translateX(-20px); }
+.tl-item.from-right { transform: translateX(20px); }
+.nb-section.visible .tl-item { opacity: 1; transform: translateX(0); }
+
+.tl-year {
+  font-family: var(--font-hw); font-size: 18px;
+  line-height: var(--line); color: var(--ink-gray);
+  text-align: right; padding-right: 8px;
+}
+.tl-connector {
+  /* the dashed horizontal line connecting year to content */
+  display: flex; flex-direction: column; align-items: center;
+  padding-top: 14px;
+}
+.tl-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--ink); flex-shrink: 0;
+}
+.tl-dot.current { background: var(--ink-green); box-shadow: 0 0 0 3px rgba(22,101,52,0.2); animation: pulseGreen 2s ease-in-out infinite; }
+.tl-dot.cert    { background: var(--ink-blue); }
+.tl-vline {
+  width: 2px; flex: 1; min-height: calc(var(--line) * 3);
+  background: repeating-linear-gradient(to bottom,
+    var(--ink) 0, var(--ink) 4px, transparent 4px, transparent 8px
+  );
+  margin-top: 4px;
+}
+.tl-item:last-child .tl-vline { display: none; }
+
+.tl-content { padding-bottom: calc(var(--line) * 0.5); }
+.tl-degree {
+  font-family: var(--font-hw); font-size: 24px; font-weight: 700;
+  line-height: var(--line); color: var(--ink);
+  display: block;
+}
+.tl-inst {
+  font-family: var(--font-hw); font-size: 20px;
+  line-height: var(--line); color: var(--ink-blue);
+  display: block;
+}
+.tl-board {
+  font-family: var(--font-hw); font-size: 18px;
+  line-height: var(--line); color: var(--ink-gray);
+  display: block;
+}
+.tl-badge {
+  font-family: var(--font-hw); font-size: 17px;
+  line-height: var(--line); color: var(--ink-green);
+  display: inline-block;
+}
+.tl-badge.cert { color: var(--ink-blue); }
+
+/* ──────────────────────────────────────────────────────────────
+   13. PROJECTS — NOTEBOOK DIARY ENTRIES
+   ────────────────────────────────────────────────────────────── */
+.proj-entry {
+  margin-bottom: calc(var(--line) * 0.5);
+  opacity: 0; transform: translateY(-20px);
+  transition: opacity 0.5s ease var(--d,0s),
+              transform 0.55s cubic-bezier(0.22,1,0.36,1) var(--d,0s);
+}
+.nb-section.visible .proj-entry { opacity: 1; transform: translateY(0); }
+
+.proj-title-line {
+  display: flex; align-items: baseline;
+  gap: 12px; flex-wrap: wrap;
+}
+.proj-num {
+  font-family: var(--font-hw); font-size: 18px;
+  color: var(--ink-gray); line-height: var(--line);
+}
+.proj-name {
+  font-family: var(--font-hw); font-size: 26px; font-weight: 700;
+  color: var(--ink); line-height: var(--line);
+  transform: rotate(-0.5deg); display: inline-block;
+}
+.proj-sub {
+  font-family: var(--font-hw); font-size: 18px;
+  color: var(--ink-blue); line-height: var(--line);
+  font-style: italic;
+}
+.proj-link {
+  font-family: var(--font-hw); font-size: 20px;
+  color: var(--ink-red); line-height: var(--line);
+  display: block;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.proj-link:hover { color: var(--ink-blue); text-decoration: underline dotted; }
+
+.proj-desc {
+  font-family: var(--font-hw); font-size: 21px;
+  line-height: var(--line); color: var(--ink-mid);
+  display: block; max-width: 720px;
+}
+.proj-stack {
+  font-family: var(--font-hw); font-size: 19px;
+  line-height: var(--line); color: var(--ink-gray);
+  display: block;
+}
+.proj-stack strong { color: var(--ink); font-weight: 600; }
+
+/* separator between projects — looks like a pencil line */
+.proj-sep {
+  display: block;
+  height: 1px;
+  margin: calc(var(--line) * 0.5) 0;
+  background: repeating-linear-gradient(to right,
+    rgba(30,34,54,0.2) 0, rgba(30,34,54,0.2) 4px,
+    transparent 4px, transparent 8px
+  );
+}
+
+/* ──────────────────────────────────────────────────────────────
+   14. SKILLS — HANDWRITTEN LISTS
+   ────────────────────────────────────────────────────────────── */
+.skills-cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0 60px;
+}
+.skill-col {
+  opacity: 0; transform: translateY(16px);
+  transition: opacity 0.5s ease var(--d,0s), transform 0.5s ease var(--d,0s);
+}
+.nb-section.visible .skill-col { opacity: 1; transform: translateY(0); }
+
+.skill-col-label {
+  font-family: var(--font-hw); font-size: 18px;
+  font-weight: 600; line-height: var(--line);
+  color: var(--ink-gray); text-transform: uppercase; letter-spacing: 1.5px;
+  display: block;
+  border-bottom: 1.5px solid rgba(30,34,54,0.18);
+  margin-bottom: 0;
+}
+.skill-item {
+  font-family: var(--font-hw); font-size: 22px;
+  line-height: var(--line); color: var(--ink-mid);
+  display: flex; align-items: center; gap: 10px;
+  opacity: 0; transform: translateX(-8px);
+  transition: opacity 0.35s ease var(--d,0s), transform 0.35s ease var(--d,0s);
+}
+.nb-section.visible .skill-item { opacity: 1; transform: translateX(0); }
+.skill-item-mark { color: var(--ink-red); flex-shrink: 0; }
+
+.skill-col.blue .skill-item-mark { color: var(--ink-blue); }
+.skill-col.green .skill-item-mark { color: var(--ink-green); }
+
+/* soft skills — inline comma list */
+.skills-inline-block {
+  margin-top: calc(var(--line) * 0.5);
+  opacity: 0; transition: opacity 0.5s ease 1.2s;
+}
+.nb-section.visible .skills-inline-block { opacity: 1; }
+.skills-block-label {
+  font-family: var(--font-hw); font-size: 18px; font-weight: 600;
+  color: var(--ink-gray); text-transform: uppercase; letter-spacing: 1.5px;
+  line-height: var(--line); display: block;
+  border-bottom: 1.5px solid rgba(30,34,54,0.18);
+}
+.skills-inline-text {
+  font-family: var(--font-hw); font-size: 22px;
+  line-height: var(--line); color: var(--ink-mid);
+  display: block;
+}
+.skills-inline-text em { color: var(--ink); font-style: normal; font-weight: 600; }
+
+/* ──────────────────────────────────────────────────────────────
+   15. CONTACT SECTION
+   ────────────────────────────────────────────────────────────── */
+.contact-intro {
+  font-family: var(--font-hw); font-size: 22px;
+  line-height: var(--line); color: var(--ink-mid);
+  display: block; max-width: 640px;
+  opacity: 0; transition: opacity 0.5s ease 0.2s;
+}
+.nb-section.visible .contact-intro { opacity: 1; }
+
+.contact-list { list-style: none; }
+.contact-list-item {
+  display: flex; align-items: center; gap: 14px;
+  font-family: var(--font-hw); font-size: 22px;
+  line-height: var(--line); color: var(--ink);
+  text-decoration: none;
+  opacity: 0; transform: translateX(-12px);
+  transition: opacity 0.45s ease var(--d,0s), transform 0.45s ease var(--d,0s);
+}
+.nb-section.visible .contact-list-item { opacity: 1; transform: translateX(0); }
+.contact-list-item:hover { color: var(--ink-blue); }
+
+.c-icon { width: 28px; text-align: center; font-size: 20px; flex-shrink: 0; }
+.c-label {
+  font-size: 17px; color: var(--ink-gray); width: 80px; flex-shrink: 0;
+  font-style: italic;
+}
+.c-val { color: var(--ink-blue); font-weight: 600; }
+.contact-list-item:hover .c-val { text-decoration: underline dotted; }
+
+.nb-footer {
+  margin-top: calc(var(--line) * 2);
+  padding-top: calc(var(--line) * 1);
+  border-top: 2px dashed rgba(30,34,54,0.15);
+  font-family: var(--font-hw); font-size: 20px;
+  line-height: var(--line); color: var(--ink-gray);
+}
+.footer-name { color: var(--ink); font-weight: 700; }
+
+/* ──────────────────────────────────────────────────────────────
+   16. FLOATING HANDWRITTEN NAV
+   ────────────────────────────────────────────────────────────── */
+.nb-nav {
+  position: fixed; top: calc(var(--line) * 0.5); right: 28px;
+  z-index: 200; display: flex; flex-direction: column;
+  align-items: flex-end; gap: 0;
+}
+.nb-nav-link {
+  font-family: var(--font-hw); font-size: 20px;
+  line-height: var(--line); color: var(--ink);
+  text-decoration: none; opacity: 0.3;
+  transition: opacity 0.2s, transform 0.2s;
+  transform: rotate(-0.5deg) translateX(0);
+}
+.nb-nav-link:hover { opacity: 1; transform: rotate(-1.5deg) translateX(-4px); }
+
+/* ──────────────────────────────────────────────────────────────
+   17. KEYFRAMES
+   ────────────────────────────────────────────────────────────── */
+@keyframes writeIn {
+  0%   { opacity:0; transform:rotate(-5deg) scale(0.65) translateY(24px); filter:blur(6px); }
+  100% { opacity:1; transform:rotate(-2.5deg) scale(1) translateY(0); filter:drop-shadow(1px 2px 2px rgba(0,0,0,0.12)); }
+}
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(12px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes bounce {
+  0%,100% { transform:translateY(0); }
+  50%     { transform:translateY(8px); }
+}
+@keyframes loaderPulse {
+  0%,100% { opacity:0.4; }
+  50%     { opacity:0.8; }
+}
+@keyframes pulseGreen {
+  0%,100% { box-shadow: 0 0 0 3px rgba(22,101,52,0.2); }
+  50%     { box-shadow: 0 0 0 6px rgba(22,101,52,0.08); }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   18. RESPONSIVE
+   ────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  :root { --margin-x: 56px; --write-l: calc(var(--margin-x) + 24px); }
+  body  { font-size: 19px; }
+  .nb-nav  { display: none; }
+  .nb-spine { width: 38px; }
+  .skills-cols { grid-template-columns: 1fr; }
+  .tl-item { grid-template-columns: 100px auto 1fr; }
+  .proj-name { font-size: 22px; }
+}
