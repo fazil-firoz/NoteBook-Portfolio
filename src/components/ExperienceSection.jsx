@@ -1,16 +1,26 @@
 import { NbSection } from './NbSection'
 
 const BULLETS = [
-  'Designed and developed Hospital Management Systems (HMS) for clients across Dubai and India using ASP.NET Core, React, SQL, and PostgreSQL.',
-  'Built and contributed to a CRM system for an overseas educational consultancy, streamlining student and application management processes.',
-  'Built robust backend modules using C# and improved database performance through optimized SQL queries.',
-  'Developed and integrated RESTful APIs to enable seamless communication between frontend and backend systems.',
-  'Integrated third-party APIs to extend system functionality and ensure smooth external service communication.',
-  'Resolved critical production issues and ensured high system availability and reliability.',
-  'Performed unit testing and debugging to ensure application reliability, code quality, and smooth functionality across modules.',
+  'Designed and developed Hospital Management Systems (HMS) for clients across Dubai and India using ASP.NET Core, React, SQL Server, and PostgreSQL.',
+  'Built and contributed to a CRM system for an overseas educational consultancy, streamlining student profiles and application tracking.',
+  'Architected robust backend modules in C# and optimized complex SQL queries for peak database performance.',
+  'Developed and integrated RESTful APIs to enable seamless, real-time communication between frontend React apps and backend services.',
+  'Integrated third-party APIs and payment gateways to extend core system capabilities and external service communication.',
+  'Diagnosed and resolved critical production issues, ensuring high application uptime, performance, and operational reliability.',
+  'Performed thorough unit testing and debugging across modules to deliver clean, maintainable, and bug-free code.',
 ]
 
-const TECH_TAGS = ['ASP.NET Core', 'React.js', 'C#', 'PostgreSQL', 'SQL Server', 'REST APIs', 'CRM', 'HMS Systems']
+const TECH_TAGS = [
+  'C#',
+  'ASP.NET Core',
+  'React.js',
+  'PostgreSQL',
+  'SQL Server',
+  'RESTful APIs',
+  'CRM System',
+  'HMS Systems',
+  'Git & SourceTree',
+]
 
 export function ExperienceSection() {
   return (
@@ -18,18 +28,19 @@ export function ExperienceSection() {
       <h2 className="section-heading">Professional Experience</h2>
       <span className="heading-gap" />
 
-      <div className="exp-entry neat-card notebook-paper-card" style={{ '--d': '0.1s' }}>
-        {/* Scotch Tape on top center */}
+      <div className="exp-entry neat-card notebook-paper-card note-cream" style={{ '--d': '0.1s' }}>
+        {/* Scotch Tape on top center & paperclip icon */}
         <span className="card-tape-top" aria-hidden="true" />
+        <span className="card-pin-icon" aria-hidden="true">📌</span>
 
         <div className="exp-header-row">
           <div className="exp-title-group">
             <h3 className="exp-company">
               <span className="paperclip-icon">📎</span> Antas Technologies
             </h3>
-            <span className="exp-location">📍 Kochi, Kerala, India</span>
+            <span className="exp-location">📍 Infopark, Kochi, Kerala, India</span>
           </div>
-          <span className="exp-date-badge">● Present (1 Year+)</span>
+          <span className="exp-date-badge">● 2024 – Present (1+ Year)</span>
         </div>
 
         <span className="exp-role-title">

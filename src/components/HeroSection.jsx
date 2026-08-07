@@ -17,10 +17,10 @@ export function HeroSection() {
         <div className="hero-text">
 
           {/* Date stamp & location */}
-          <div className="hero-meta-row">
+          {/* <div className="hero-meta-row">
             <span className="hero-date">August, 2025</span>
             <span className="hero-loc">📍 Kochi, Kerala, India</span>
-          </div>
+          </div> */}
 
           {/* Greeting */}
           <h1 className="hero-greeting">
@@ -35,10 +35,10 @@ export function HeroSection() {
           </span>
 
           {/* Sub-tagline */}
-          <span className="hero-tagline">
+          {/* <span className="hero-tagline">
             Specializing in{' '}
             <em className="hero-em">C# · ASP.NET Core · React · Python (Django) · SQL</em>
-          </span>
+          </span> */}
 
           {/* Action Row: Resume Download + Social Icons */}
           <div className="hero-actions">
