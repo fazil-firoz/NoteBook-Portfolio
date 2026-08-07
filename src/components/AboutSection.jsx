@@ -95,24 +95,24 @@ export function AboutSection() {
           </div>
         ))}
 
-        {/* 4 contact pills aligned in a single line with dynamic animations */}
-        <div className="about-contacts-single-line">
+        {/* 4 contact items in a clean, aligned box view */}
+        <div className="about-contacts-box-grid">
           {[
-            { icon: '✉️', value: 'fazzilfiroz@gmail.com', href: 'mailto:fazzilfiroz@gmail.com', d: '1.4s', rot: '-1.5deg' },
-            { icon: '📞', value: '+91 90486 34881',         href: 'tel:+919048634881',             d: '1.6s', rot: '1deg' },
-            { icon: '🐙', value: 'github.com/fazil-firoz', href: 'https://github.com/fazil-firoz', d: '1.8s', rot: '-1deg' },
-            { icon: '💼', value: 'linkedin.com/in/fazzil-firoz', href: 'https://linkedin.com/in/fazzil-firoz', d: '2.0s', rot: '1.5deg' },
+            { icon: '✉️', value: 'fazzilfiroz@gmail.com', href: 'mailto:fazzilfiroz@gmail.com', d: '0.1s' },
+            { icon: '📞', value: '+91 90486 34881',         href: 'tel:+919048634881',             d: '0.2s' },
+            { icon: '🐙', value: 'github.com/fazil-firoz', href: 'https://github.com/fazil-firoz', d: '0.3s' },
+            { icon: '💼', value: 'linkedin.com/in/fazzil-firoz', href: 'https://linkedin.com/in/fazzil-firoz', d: '0.4s' },
           ].map(c => (
             <a
               key={c.value}
               href={c.href}
               target="_blank"
               rel="noreferrer"
-              className="about-contact-pill"
-              style={{ '--d': c.d, '--rot': c.rot }}
+              className="about-contact-box"
+              style={{ '--d': c.d }}
             >
-              <span className="contact-pill-icon">{c.icon}</span>
-              <span className="contact-pill-val">{c.value}</span>
+              <span className="contact-box-icon">{c.icon}</span>
+              <span className="contact-box-text">{c.value}</span>
             </a>
           ))}
         </div>
