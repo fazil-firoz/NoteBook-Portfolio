@@ -40,59 +40,20 @@ export function HeroSection() {
             <em className="hero-em">C# · ASP.NET Core · React · Python (Django) · SQL</em>
           </span> */}
 
-          {/* Action Row: Resume Download + Compact Social Icons */}
-          <div className="hero-actions">
+          {/* Single Elegant Resume Download Button below Designation */}
+          <div className="hero-resume-wrap">
             <a
-              href="mailto:fazzilfiroz@gmail.com?subject=Requesting%20Fazil%20Firoz%20Resume"
+              href="https://drive.google.com/uc?export=download&id=1bWWonmatRi9In2PLxodDLYEQXc7DejLl"
+              download="Fazil Firoz's Resume.pdf"
               target="_blank"
               rel="noreferrer"
-              className="hero-resume-btn"
-              title="Download / Request Resume"
+              className="hero-resume-elegant-btn"
+              title="Download Fazil Firoz's Resume"
             >
-              <span className="hero-resume-icon" aria-hidden="true">📄</span>
-              <span className="hero-resume-text">Download Resume</span>
+              <span className="resume-icon" aria-hidden="true">📥</span>
+              <span className="resume-text">Download Resume</span>
+              <span className="resume-arrow" aria-hidden="true">↓</span>
             </a>
-
-            <div className="hero-socials">
-              <a
-                href="https://github.com/fazil-firoz"
-                target="_blank"
-                rel="noreferrer"
-                className="hero-social-link"
-                title="GitHub"
-              >
-                <span className="social-icon">🐙</span>
-                <span className="social-label">GitHub</span>
-              </a>
-              <a
-                href="https://linkedin.com/in/fazzil-firoz"
-                target="_blank"
-                rel="noreferrer"
-                className="hero-social-link"
-                title="LinkedIn"
-              >
-                <span className="social-icon">💼</span>
-                <span className="social-label">LinkedIn</span>
-              </a>
-              <a
-                href="mailto:fazzilfiroz@gmail.com"
-                className="hero-social-link"
-                title="Email"
-              >
-                <span className="social-icon">✉️</span>
-                <span className="social-label">Email</span>
-              </a>
-              <a
-                href="https://fazil-firoz.github.io/Portfolio_new/"
-                target="_blank"
-                rel="noreferrer"
-                className="hero-social-link"
-                title="Previous Portfolio"
-              >
-                <span className="social-icon">🌐</span>
-                <span className="social-label">Old Portfolio</span>
-              </a>
-            </div>
           </div>
 
           {/* Degree badge — stamp style */}
