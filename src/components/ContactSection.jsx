@@ -7,6 +7,7 @@ const CONTACT_ITEMS = [
     value: 'fazzilfiroz@gmail.com',
     href: 'mailto:fazzilfiroz@gmail.com',
     sub: 'Send an email anytime',
+    noteColor: 'note-cream',
   },
   {
     icon: '📞',
@@ -14,6 +15,7 @@ const CONTACT_ITEMS = [
     value: '+91 90486 34881',
     href: 'tel:+919048634881',
     sub: 'Mobile / WhatsApp',
+    noteColor: 'note-mint',
   },
   {
     icon: '🐙',
@@ -21,6 +23,7 @@ const CONTACT_ITEMS = [
     value: 'github.com/fazil-firoz',
     href: 'https://github.com/fazil-firoz',
     sub: 'Explore repositories & projects',
+    noteColor: 'note-yellow',
   },
   {
     icon: '💼',
@@ -28,6 +31,7 @@ const CONTACT_ITEMS = [
     value: 'linkedin.com/in/fazzil-firoz',
     href: 'https://linkedin.com/in/fazzil-firoz',
     sub: 'Connect professionally',
+    noteColor: 'note-blue',
   },
   {
     icon: '🌐',
@@ -35,6 +39,7 @@ const CONTACT_ITEMS = [
     value: 'fazil-firoz.github.io/Portfolio_new',
     href: 'https://fazil-firoz.github.io/Portfolio_new/',
     sub: 'Previous portfolio showcase',
+    noteColor: 'note-pink',
   },
 ]
 
@@ -46,7 +51,8 @@ export function ContactSection() {
 
       <div className="contact-container">
         {/* Left column: Address & Resume card */}
-        <div className="contact-info-card neat-card" style={{ '--d': '0.1s' }}>
+        <div className="contact-info-card sticky-note-card note-yellow" style={{ '--d': '0.1s' }}>
+          <span className="card-tape-top" aria-hidden="true" />
           <h3 className="contact-card-title">📍 Location &amp; Address</h3>
           <p className="contact-address-text">
             <strong>Fazil Firoz</strong><br />
@@ -79,7 +85,7 @@ export function ContactSection() {
               href={item.href}
               target="_blank"
               rel="noreferrer"
-              className="contact-item-card neat-card"
+              className={`contact-item-card sticky-note-card ${item.noteColor}`}
               style={{ '--d': `${0.15 + i * 0.1}s` }}
             >
               <span className="contact-item-icon">{item.icon}</span>

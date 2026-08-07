@@ -450,36 +450,119 @@ body {
 }
 
 /* ──────────────────────────────────────────────────────────────
-   8.  NEAT NOTEBOOK CARD UTILITY (.neat-card)
-       Sections below About Me use clean fonts and structured paper cards
+   8.  ORGANIC NOTEBOOK STICKY NOTES & GLUED PAPER CARDS
    ────────────────────────────────────────────────────────────── */
 .nb-neat-section {
   font-family: var(--font-sans);
 }
 
-.neat-card {
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(4px);
-  border: 1.5px solid rgba(30, 34, 54, 0.12);
-  border-radius: 10px;
-  padding: 24px;
-  box-shadow: 0 4px 14px rgba(30, 34, 54, 0.05);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+.sticky-note-card, .notebook-paper-card, .neat-card {
   position: relative;
+  padding: 24px;
+  border-radius: 6px;
+  box-shadow:
+    0 2px 4px rgba(30, 34, 54, 0.04),
+    0 6px 18px rgba(30, 34, 54, 0.08);
+  transition: transform 0.3s cubic-bezier(0.25,1,0.5,1), box-shadow 0.3s ease;
+  /* Paper background with subtle ruled line grid texture */
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 27px,
+    rgba(30, 34, 54, 0.035) 27px,
+    rgba(30, 34, 54, 0.035) 28px
+  );
 }
-.neat-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(30, 58, 138, 0.3);
-  box-shadow: 0 8px 24px rgba(30, 34, 54, 0.09);
-  background: rgba(255, 255, 255, 0.85);
+
+.sticky-note-card:hover, .notebook-paper-card:hover, .neat-card:hover {
+  transform: rotate(0deg) translateY(-4px) scale(1.01) !important;
+  box-shadow:
+    0 4px 8px rgba(30, 34, 54, 0.06),
+    0 12px 28px rgba(30, 34, 54, 0.12);
+  z-index: 10;
 }
 
 .neat-card-sm {
-  background: rgba(255, 255, 255, 0.55);
-  border: 1px solid rgba(30, 34, 54, 0.1);
-  border-radius: 8px;
   padding: 16px 20px;
-  box-shadow: 0 2px 8px rgba(30, 34, 54, 0.04);
+}
+
+/* Color palettes for sticky notes glued in notebook */
+.note-yellow {
+  background-color: #fff9db;
+  border: 1px solid rgba(230, 210, 140, 0.7);
+  color: #2c281e;
+}
+.note-mint {
+  background-color: #f0f7f2;
+  border: 1px solid rgba(160, 210, 180, 0.7);
+  color: #1e2c22;
+}
+.note-blue {
+  background-color: #eef5fc;
+  border: 1px solid rgba(160, 195, 235, 0.7);
+  color: #1a273b;
+}
+.note-cream {
+  background-color: #faf5ea;
+  border: 1px solid rgba(215, 200, 175, 0.7);
+  color: #2a2620;
+}
+.note-pink {
+  background-color: #fdf0f4;
+  border: 1px solid rgba(235, 180, 200, 0.7);
+  color: #381e28;
+}
+
+/* Scotch tape strip on top center of sticky note cards */
+.card-tape-top {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1.5deg);
+  width: 64px;
+  height: 20px;
+  background: rgba(255, 248, 200, 0.85);
+  border: 0.5px solid rgba(200, 190, 120, 0.55);
+  z-index: 5;
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(255,255,200,0.0) 0px,
+    rgba(255,255,200,0.0) 3px,
+    rgba(240,230,150,0.25) 3px,
+    rgba(240,230,150,0.25) 4px
+  );
+  box-shadow: inset 0 0 3px rgba(200,180,80,0.18);
+  border-radius: 2px;
+}
+
+.card-tape-corner {
+  position: absolute;
+  top: -8px;
+  right: 12px;
+  transform: rotate(15deg);
+  width: 44px;
+  height: 16px;
+  background: rgba(255, 248, 200, 0.85);
+  border: 0.5px solid rgba(200, 190, 120, 0.55);
+  z-index: 5;
+  border-radius: 2px;
+}
+
+/* Pushpin / paperclip decoration on top right */
+.card-pin-icon {
+  position: absolute;
+  top: -12px;
+  right: 16px;
+  font-size: 20px;
+  z-index: 6;
+  filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.2));
+}
+
+.paperclip-icon {
+  display: inline-block;
+  transform: rotate(-15deg);
+  font-size: 22px;
+  margin-right: 4px;
 }
 
 /* ──────────────────────────────────────────────────────────────

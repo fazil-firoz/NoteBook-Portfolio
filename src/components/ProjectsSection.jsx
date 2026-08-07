@@ -10,6 +10,9 @@ const PROJECTS = [
     link:  'https://github.com/fazil-firoz/Main-Project.git',
     type:  'GitHub Repository',
     isRepo: true,
+    noteColor: 'note-yellow',
+    pinIcon: '📌',
+    tilt:  'rotate(-1deg)',
   },
   {
     num:   '02',
@@ -20,6 +23,9 @@ const PROJECTS = [
     link:  'https://github.com/fazil-firoz/Learnify.git',
     type:  'GitHub Repository',
     isRepo: true,
+    noteColor: 'note-mint',
+    pinIcon: '📎',
+    tilt:  'rotate(1.2deg)',
   },
   {
     num:   '03',
@@ -30,6 +36,9 @@ const PROJECTS = [
     link:  'https://fazil-firoz.github.io/Portfolio_new/',
     type:  'Live Website',
     isRepo: false,
+    noteColor: 'note-blue',
+    pinIcon: '🏷️',
+    tilt:  'rotate(-0.8deg)',
   },
   {
     num:   '04',
@@ -40,6 +49,9 @@ const PROJECTS = [
     link:  'https://github.com/fazil-firoz/News-App.git',
     type:  'GitHub Repository',
     isRepo: true,
+    noteColor: 'note-cream',
+    pinIcon: '📌',
+    tilt:  'rotate(0.9deg)',
   },
   {
     num:   '05',
@@ -50,6 +62,9 @@ const PROJECTS = [
     link:  'https://fazil-firoz.github.io/bonos/',
     type:  'Live Webpage',
     isRepo: false,
+    noteColor: 'note-pink',
+    pinIcon: '📎',
+    tilt:  'rotate(-1.1deg)',
   },
 ]
 
@@ -63,9 +78,13 @@ export function ProjectsSection() {
         {PROJECTS.map((p, i) => (
           <div
             key={p.num}
-            className="proj-card neat-card"
-            style={{ '--d': `${0.1 + i * 0.12}s` }}
+            className={`proj-card sticky-note-card ${p.noteColor}`}
+            style={{ '--d': `${0.1 + i * 0.12}s`, transform: p.tilt }}
           >
+            {/* Top Tape strip / Pin */}
+            <span className="card-tape-top" aria-hidden="true" />
+            <span className="card-pin-icon" aria-hidden="true">{p.pinIcon}</span>
+
             <div className="proj-card-header">
               <span className="proj-card-num">{p.num}</span>
               <div className="proj-card-title-group">

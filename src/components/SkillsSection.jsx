@@ -3,19 +3,19 @@ import { NbSection } from './NbSection'
 const CATEGORIES = [
   {
     title: 'Programming Languages',
-    colorClass: 'col-languages',
+    colorClass: 'note-yellow',
     icon: '💻',
     items: ['Python (Django)', 'C#', 'JavaScript', 'C / C++', 'HTML & CSS'],
   },
   {
     title: 'Frameworks & Libraries',
-    colorClass: 'col-frameworks',
+    colorClass: 'note-blue',
     icon: '⚙️',
     items: ['ASP.NET Core', '.NET MVC', 'React.js', 'Bootstrap'],
   },
   {
     title: 'Databases & Tools',
-    colorClass: 'col-tools',
+    colorClass: 'note-mint',
     icon: '🛢️',
     items: [
       'MySQL', 'PostgreSQL', 'SQL Server', 'Git & SourceTree',
@@ -47,9 +47,10 @@ export function SkillsSection() {
         {CATEGORIES.map((cat, i) => (
           <div
             key={cat.title}
-            className={`skills-card neat-card ${cat.colorClass}`}
+            className={`skills-card sticky-note-card ${cat.colorClass}`}
             style={{ '--d': `${0.1 + i * 0.12}s` }}
           >
+            <span className="card-tape-top" aria-hidden="true" />
             <h3 className="skills-card-title">
               <span className="skills-icon">{cat.icon}</span> {cat.title}
             </h3>
@@ -67,7 +68,8 @@ export function SkillsSection() {
       {/* Soft Skills & Languages side-by-side */}
       <div className="skills-extra-row">
         {/* Soft Skills */}
-        <div className="skills-extra-card neat-card" style={{ '--d': '0.5s' }}>
+        <div className="skills-extra-card sticky-note-card note-cream" style={{ '--d': '0.5s' }}>
+          <span className="card-pin-icon" aria-hidden="true">📌</span>
           <h3 className="skills-card-title">🌟 Soft Skills</h3>
           <div className="skills-pill-group">
             {SOFT_SKILLS.map(s => (
@@ -77,7 +79,8 @@ export function SkillsSection() {
         </div>
 
         {/* Languages Spoken */}
-        <div className="skills-extra-card neat-card" style={{ '--d': '0.65s' }}>
+        <div className="skills-extra-card sticky-note-card note-pink" style={{ '--d': '0.65s' }}>
+          <span className="card-pin-icon" aria-hidden="true">📎</span>
           <h3 className="skills-card-title">🗣️ Spoken Languages</h3>
           <div className="lang-list">
             {LANGUAGES_SPOKEN.map(l => (

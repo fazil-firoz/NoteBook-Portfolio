@@ -9,6 +9,7 @@ const MILESTONES = [
     board:   'APJ Abdul Kalam Technological University',
     side:    'from-right',
     graduated: true,
+    noteColor: 'note-cream',
   },
   {
     year:    '2022',
@@ -17,6 +18,7 @@ const MILESTONES = [
     board:   'National Council for Technology and Training',
     side:    'from-left',
     cert:    true,
+    noteColor: 'note-blue',
   },
   {
     year:    '2019 – 2022',
@@ -24,6 +26,7 @@ const MILESTONES = [
     inst:    'Majlis Arts and Science College, Puramannur',
     board:   'University of Calicut',
     side:    'from-right',
+    noteColor: 'note-yellow',
   },
   {
     year:    '2017 – 2019',
@@ -31,6 +34,7 @@ const MILESTONES = [
     inst:    'GJHSS Naduvattam',
     board:   'Kerala State Board',
     side:    'from-left',
+    noteColor: 'note-mint',
   },
 ]
 
@@ -61,7 +65,8 @@ export function EducationSection() {
               <span className="tl-vline" />
             </span>
 
-            <span className="tl-content neat-card-sm">
+            <span className={`tl-content sticky-note-card neat-card-sm ${m.noteColor}`}>
+              <span className="card-tape-corner" aria-hidden="true" />
               <span className="tl-degree">{m.degree}</span>
               <span className="tl-inst">{m.inst}</span>
               <span className="tl-board">{m.board}</span>

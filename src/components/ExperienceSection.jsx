@@ -18,10 +18,15 @@ export function ExperienceSection() {
       <h2 className="section-heading">Professional Experience</h2>
       <span className="heading-gap" />
 
-      <div className="exp-entry neat-card" style={{ '--d': '0.1s' }}>
+      <div className="exp-entry neat-card notebook-paper-card" style={{ '--d': '0.1s' }}>
+        {/* Scotch Tape on top center */}
+        <span className="card-tape-top" aria-hidden="true" />
+
         <div className="exp-header-row">
           <div className="exp-title-group">
-            <h3 className="exp-company">Antas Technologies</h3>
+            <h3 className="exp-company">
+              <span className="paperclip-icon">📎</span> Antas Technologies
+            </h3>
             <span className="exp-location">📍 Kochi, Kerala, India</span>
           </div>
           <span className="exp-date-badge">● Present (1 Year+)</span>
