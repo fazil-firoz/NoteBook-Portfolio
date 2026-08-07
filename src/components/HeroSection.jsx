@@ -1,6 +1,6 @@
 /* ================================================================
    HERO SECTION — Notebook-style intro with passport-photo effect
-   Photo glued on paper like a real notebook/diary entry
+   Photo glued on paper like a real notebook/diary entry + Resume Button & Social Links
    ================================================================ */
 
 export function HeroSection() {
@@ -16,8 +16,11 @@ export function HeroSection() {
         {/* LEFT — handwritten intro text */}
         <div className="hero-text">
 
-          {/* Date stamp — like a diary entry */}
-          <span className="hero-date">August, 2025</span>
+          {/* Date stamp & location */}
+          <div className="hero-meta-row">
+            <span className="hero-date">August, 2025</span>
+            <span className="hero-loc">📍 Kochi, Kerala, India</span>
+          </div>
 
           {/* Greeting */}
           <h1 className="hero-greeting">
@@ -28,25 +31,80 @@ export function HeroSection() {
           {/* Designation line */}
           <span className="hero-title-line">
             <span className="hero-title-arrow">→</span>
-            MCA Graduate &amp; Software Engineer
+            Junior Software Engineer &amp; MCA Graduate
           </span>
 
           {/* Sub-tagline */}
-          {/* <span className="hero-tagline">
-            Building scalable web apps with{' '}
-            <em className="hero-em">C# · ASP.NET Core · React</em>
-          </span> */}
+          <span className="hero-tagline">
+            Specializing in{' '}
+            <em className="hero-em">C# · ASP.NET Core · React · Python (Django) · SQL</em>
+          </span>
+
+          {/* Action Row: Resume Download + Social Icons */}
+          <div className="hero-actions">
+            <a
+              href="mailto:fazzilfiroz@gmail.com?subject=Requesting%20Fazil%20Firoz%20Resume"
+              target="_blank"
+              rel="noreferrer"
+              className="hero-resume-btn"
+              title="Download / Request Resume"
+            >
+              <span className="hero-paperclip" aria-hidden="true">📎</span>
+              <span className="hero-resume-text">📄 Download Resume</span>
+            </a>
+
+            <div className="hero-socials">
+              <a
+                href="https://github.com/fazil-firoz"
+                target="_blank"
+                rel="noreferrer"
+                className="hero-social-link"
+                title="GitHub"
+              >
+                <span className="social-icon">🐙</span>
+                <span className="social-label">GitHub</span>
+              </a>
+              <a
+                href="https://linkedin.com/in/fazzil-firoz"
+                target="_blank"
+                rel="noreferrer"
+                className="hero-social-link"
+                title="LinkedIn"
+              >
+                <span className="social-icon">💼</span>
+                <span className="social-label">LinkedIn</span>
+              </a>
+              <a
+                href="mailto:fazzilfiroz@gmail.com"
+                className="hero-social-link"
+                title="Email"
+              >
+                <span className="social-icon">✉️</span>
+                <span className="social-label">Email</span>
+              </a>
+              <a
+                href="https://fazil-firoz.github.io/Portfolio_new/"
+                target="_blank"
+                rel="noreferrer"
+                className="hero-social-link"
+                title="Previous Portfolio"
+              >
+                <span className="social-icon">🌐</span>
+                <span className="social-label">Old Portfolio</span>
+              </a>
+            </div>
+          </div>
 
           {/* Degree badge — stamp style */}
           <div className="hero-stamp" role="img" aria-label="MCA Certified">
             <span className="hero-stamp-line1">MCA</span>
             <span className="hero-stamp-line2">Certified</span>
-            <span className="hero-stamp-line3">APJ Abdul Kalam Technological University</span>
+            <span className="hero-stamp-line3">APJ Abdul Kalam Tech University</span>
           </div>
 
           {/* Scroll hint */}
           <span className="hero-scroll-hint" aria-hidden="true">
-            ↓ scroll to explore
+            ↓ scroll to explore notebook
           </span>
         </div>
 
