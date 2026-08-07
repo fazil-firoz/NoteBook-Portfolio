@@ -43,7 +43,7 @@ export function HeroSection() {
           {/* Single Elegant Resume Download Button below Designation */}
           <div className="hero-resume-wrap">
             <a
-              href="https://drive.google.com/uc?export=download&id=1bWWonmatRi9In2PLxodDLYEQXc7DejLl"
+              href="https://drive.google.com/uc?export=download&id=1IkHdtZ_NiDw6oqCEv-06q8TGZoNhUhlZ"
               download="Fazil Firoz's Resume.pdf"
               target="_blank"
               rel="noreferrer"

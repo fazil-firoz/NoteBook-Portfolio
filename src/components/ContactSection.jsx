@@ -68,7 +68,8 @@ export function ContactSection() {
             Looking for a full copy of my CV with detailed technical skills and project descriptions?
           </p>
           <a
-            href="mailto:fazzilfiroz@gmail.com?subject=Requesting%20Fazil%20Firoz%20Resume"
+            href="https://drive.google.com/uc?export=download&id=1IkHdtZ_NiDw6oqCEv-06q8TGZoNhUhlZ"
+            download="Fazil Firoz's Resume.pdf"
             target="_blank"
             rel="noreferrer"
             className="contact-resume-btn"
