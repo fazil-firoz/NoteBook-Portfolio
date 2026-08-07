@@ -40,7 +40,7 @@ export function HeroSection() {
             <em className="hero-em">C# · ASP.NET Core · React · Python (Django) · SQL</em>
           </span> */}
 
-          {/* Action Row: Resume Download + Social Icons */}
+          {/* Action Row: Resume Download + Compact Social Icons */}
           <div className="hero-actions">
             <a
               href="mailto:fazzilfiroz@gmail.com?subject=Requesting%20Fazil%20Firoz%20Resume"
@@ -49,8 +49,8 @@ export function HeroSection() {
               className="hero-resume-btn"
               title="Download / Request Resume"
             >
-              <span className="hero-paperclip" aria-hidden="true">📎</span>
-              <span className="hero-resume-text">📄 Download Resume</span>
+              <span className="hero-resume-icon" aria-hidden="true">📄</span>
+              <span className="hero-resume-text">Download Resume</span>
             </a>
 
             <div className="hero-socials">
