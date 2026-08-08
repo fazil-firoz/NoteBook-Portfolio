@@ -660,7 +660,10 @@ body {
   transition: opacity 0.45s ease 0.15s;
 }
 .nb-section.visible .about-role { opacity: 1; }
-.about-body { max-width: 840px; }
+.about-body {
+  width: 100%;
+  max-width: 920px;
+}
 
 .about-story-block {
   margin-bottom: calc(var(--line) * 0.5);
@@ -1442,13 +1445,23 @@ a.dash-link:hover {
 }
 
 /* ──────────────────────────────────────────────────────────────
-   20. RESPONSIVE
+   21. RESPONSIVE
    ────────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  :root { --margin-x: 44px; --write-l: calc(var(--margin-x) + 16px); }
+  :root {
+    --margin-x: 28px;
+    --write-l: calc(var(--margin-x) + 10px);
+    --write-r: 14px;
+  }
+
+  .nb-section {
+    padding-left: var(--write-l);
+    padding-right: var(--write-r);
+  }
+
   body  { font-size: 18px; }
   .nb-nav  { display: none; }
-  .nb-spine { width: 32px; }
+  .nb-spine { width: 24px; }
 
   /* Hero responsive */
   .hero-layout { flex-direction: column-reverse; gap: 32px; }
@@ -1456,6 +1469,27 @@ a.dash-link:hover {
   .hero-name { font-size: 2.8rem; }
   .hero-stamp { width: 120px; height: 120px; }
   .hero-stamp-line1 { font-size: 26px; }
+
+  /* About Section Full Width Spanning on Mobile */
+  .about-body {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .about-para-story {
+    font-size: 19px;
+    line-height: 1.5;
+    word-break: normal;
+  }
+
+  .about-story-em .about-para-story {
+    font-size: 20px;
+    line-height: 1.5;
+  }
+
+  .about-story-row {
+    gap: 6px;
+  }
 
   .projects-grid { grid-template-columns: 1fr; }
   .contact-container { grid-template-columns: 1fr; }
