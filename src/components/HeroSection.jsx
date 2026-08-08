@@ -83,7 +83,7 @@ export function HeroSection() {
           {/* Designation line */}
           <span className="hero-title-line">
             <span className="hero-title-arrow">→</span>
-            Junior Software Engineer &amp; MCA Graduate
+            Software Engineer &amp; MCA Graduate
           </span>
 
           {/* Degree badge — stamp style */}
