@@ -964,6 +964,25 @@ a.dash-link:hover {
 }
 .tl-item:last-child .tl-vline { display: none; }
 
+.tl-card-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.tl-mobile-year {
+  display: none;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-blue);
+  background: rgba(30, 58, 138, 0.08);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
 .tl-degree {
   font-family: var(--font-sans);
   font-size: 18px;
@@ -995,7 +1014,6 @@ a.dash-link:hover {
   padding: 2px 8px;
   border-radius: 4px;
   display: inline-block;
-  margin-top: 8px;
 }
 .tl-badge.cert { color: var(--ink-blue); background: rgba(30, 58, 138, 0.08); }
 
@@ -1547,8 +1565,54 @@ a.dash-link:hover {
     gap: 6px;
   }
 
+  /* Education Section Compact Mobile Grid Layout */
+  .timeline-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .tl-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+    gap: 0;
+    width: 100%;
+  }
+
+  .tl-year {
+    display: none;
+  }
+
+  .tl-connector {
+    display: none;
+  }
+
+  .tl-mobile-year {
+    display: inline-block;
+  }
+
+  .tl-content {
+    padding: 14px 16px;
+    width: 100%;
+  }
+
+  .tl-degree {
+    font-size: 16px;
+  }
+
+  .tl-inst {
+    font-size: 13.5px;
+  }
+
+  .tl-board {
+    font-size: 12px;
+  }
+
   .projects-grid { grid-template-columns: 1fr; }
   .contact-container { grid-template-columns: 1fr; }
-  .tl-item { grid-template-columns: 90px auto 1fr; }
 }
 
