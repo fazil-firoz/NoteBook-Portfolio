@@ -11,7 +11,7 @@ const CATEGORIES = [
     title: 'Frameworks & Libraries',
     colorClass: 'note-blue',
     icon: '⚙️',
-    items: ['ASP.NET Core', '.NET MVC', 'React.js', 'Bootstrap'],
+    items: ['ASP.NET Core', '.NET MVC', 'React.js', 'Bootstrap','Tailwind css',],
   },
   {
     title: 'Databases & Tools',
@@ -19,6 +19,7 @@ const CATEGORIES = [
     icon: '🛢️',
     items: [
       'MySQL', 'PostgreSQL', 'SQL Server', 'Git & SourceTree',
+      'Vercel', 'Render', 'Razorpay',
       'VS Code', 'Visual Studio', 'PyCharm', 'pgAdmin & SSMS',
       'Postman & ThunderClient', 'Microsoft Excel'
     ],
