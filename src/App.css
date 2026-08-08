@@ -1465,8 +1465,59 @@ a.dash-link:hover {
   }
 
   body  { font-size: 18px; }
-  .nb-nav  { display: none; }
   .nb-spine { width: 24px; }
+
+  /* Mobile Horizontal Sticky Handwritten Navigation Bar */
+  .nb-nav {
+    position: sticky;
+    top: 0;
+    right: auto;
+    left: 0;
+    width: 100%;
+    z-index: 500;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 8px 16px;
+    background: rgba(254, 252, 246, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1.5px dashed rgba(30, 34, 54, 0.18);
+    box-shadow: 0 4px 12px rgba(30, 34, 54, 0.05);
+    scrollbar-width: none;
+  }
+
+  .nb-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nb-nav-link {
+    font-family: var(--font-hw);
+    font-size: 18px;
+    line-height: 1.2;
+    color: var(--ink);
+    opacity: 0.88;
+    background: #ffffff;
+    border: 1px dashed rgba(30, 34, 54, 0.22);
+    padding: 5px 12px;
+    border-radius: 6px;
+    white-space: nowrap;
+    transform: rotate(0deg);
+    flex-shrink: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+    transition: all 0.2s ease;
+  }
+
+  .nb-nav-link:hover, .nb-nav-link:active {
+    opacity: 1;
+    color: var(--ink-red);
+    background: #fffdf5;
+    border-color: var(--ink-red);
+    border-style: solid;
+    transform: scale(1.03);
+  }
 
   /* Hero responsive */
   .hero-layout { flex-direction: column-reverse; gap: 32px; }
