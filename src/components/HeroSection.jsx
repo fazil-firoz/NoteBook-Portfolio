@@ -5,10 +5,13 @@
 import { useState } from 'react'
 
 export function HeroSection() {
-  const [downloadState, setDownloadState] = useState('idle') // 'idle' | 'flying' | 'done'
+  const [downloadState, setDownloadState] = useState('idle') // 'idle' | 'loading' | 'flying' | 'done'
+  const [progress, setProgress] = useState(0)
   const [particles, setParticles] = useState([])
 
   const handleResumeClick = (e) => {
+    if (downloadState !== 'idle') return
+
     // Get button position
     const rect = e.currentTarget.getBoundingClientRect()
     const startX = rect.left + rect.width / 2
@@ -21,24 +24,42 @@ export function HeroSection() {
     const deltaX = targetX - startX
     const deltaY = targetY - startY
 
-    // Spawn flying visual satisfaction particles
-    const newParticles = [
-      { id: 1, icon: '📄', startX, startY, deltaX, deltaY, delay: '0ms' },
-      { id: 2, icon: '✨', startX: startX - 12, startY: startY - 8, deltaX: deltaX - 15, deltaY: deltaY + 10, delay: '90ms' },
-      { id: 3, icon: '⚡', startX: startX + 12, startY: startY + 8, deltaX: deltaX + 15, deltaY: deltaY - 10, delay: '180ms' },
-    ]
+    // 1. Start satisfying Loading animation
+    setDownloadState('loading')
+    setProgress(0)
 
-    setParticles(newParticles)
-    setDownloadState('flying')
+    const interval = setInterval(() => {
+      setProgress(prev => {
+        if (prev >= 90) {
+          clearInterval(interval)
+          return 100
+        }
+        return prev + 30
+      })
+    }, 140)
 
+    // 2. Launch flying particles when loading completes
+    setTimeout(() => {
+      setDownloadState('flying')
+      const newParticles = [
+        { id: 1, icon: '📄', startX, startY, deltaX, deltaY, delay: '0ms' },
+        { id: 2, icon: '✨', startX: startX - 12, startY: startY - 8, deltaX: deltaX - 15, deltaY: deltaY + 10, delay: '90ms' },
+        { id: 3, icon: '⚡', startX: startX + 12, startY: startY + 8, deltaX: deltaX + 15, deltaY: deltaY - 10, delay: '180ms' },
+      ]
+      setParticles(newParticles)
+    }, 650)
+
+    // 3. Mark complete
     setTimeout(() => {
       setDownloadState('done')
-    }, 750)
+    }, 1300)
 
+    // 4. Reset back to idle
     setTimeout(() => {
       setDownloadState('idle')
+      setProgress(0)
       setParticles([])
-    }, 2800)
+    }, 3800)
   }
 
   return (
@@ -77,7 +98,7 @@ export function HeroSection() {
             ↓ scroll to explore notebook
           </span>
 
-          {/* Minimal Resume Download Button with Flying Data animation */}
+          {/* Minimal Resume Download Button with Satisfying Loading State */}
           <div className="hero-resume-wrap">
             <a
               href="https://drive.google.com/uc?export=download&id=1IkHdtZ_NiDw6oqCEv-06q8TGZoNhUhlZ"
@@ -85,15 +106,31 @@ export function HeroSection() {
               target="_blank"
               rel="noreferrer"
               onClick={handleResumeClick}
-              className={`hero-resume-minimal-btn ${downloadState === 'done' ? 'download-done' : ''}`}
+              className={`hero-resume-minimal-btn ${downloadState}`}
               title="Download Fazil Firoz's Resume"
             >
+              {/* Progress bar fill effect */}
+              {downloadState === 'loading' && (
+                <span
+                  className="resume-progress-fill"
+                  style={{ width: `${progress}%` }}
+                />
+              )}
+
               <span className="resume-icon" aria-hidden="true">
-                {downloadState === 'done' ? '✓' : '📄'}
+                {downloadState === 'loading' && <span className="resume-spinner">🔄</span>}
+                {downloadState === 'flying' && '📄'}
+                {downloadState === 'done' && '✓'}
+                {downloadState === 'idle' && '📄'}
               </span>
+
               <span className="resume-text">
-                {downloadState === 'done' ? 'Downloaded!' : 'Download Resume'}
+                {downloadState === 'loading' && `Downloading ${progress}%`}
+                {downloadState === 'flying' && 'Preparing PDF...'}
+                {downloadState === 'done' && 'Downloaded!'}
+                {downloadState === 'idle' && 'Download Resume'}
               </span>
+
               <span className="resume-arrow" aria-hidden="true">
                 {downloadState === 'done' ? '✨' : '↓'}
               </span>

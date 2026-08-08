@@ -233,7 +233,37 @@ body {
   padding: 5px 12px;
   border-radius: 6px;
   text-decoration: none;
+  position: relative;
+  overflow: hidden;
   transition: all 0.25s ease;
+}
+
+.hero-resume-minimal-btn * {
+  position: relative;
+  z-index: 1;
+}
+
+.resume-progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: rgba(30, 58, 138, 0.14);
+  border-radius: 5px;
+  transition: width 0.15s ease-out;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.resume-spinner {
+  display: inline-block;
+  animation: spinLoader 0.75s linear infinite;
+  font-size: 12px;
+}
+
+@keyframes spinLoader {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
 .hero-resume-minimal-btn:hover {
@@ -245,7 +275,14 @@ body {
   box-shadow: 0 4px 12px rgba(185, 28, 28, 0.18);
 }
 
-.hero-resume-minimal-btn.download-done {
+.hero-resume-minimal-btn.loading {
+  border-style: solid;
+  border-color: var(--ink-blue);
+  color: var(--ink-blue);
+  background: rgba(30, 58, 138, 0.04);
+}
+
+.hero-resume-minimal-btn.done {
   background: var(--ink-green, #166534);
   color: #ffffff;
   border-color: var(--ink-green, #166534);
