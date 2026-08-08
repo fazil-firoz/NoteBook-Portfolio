@@ -77,10 +77,13 @@ export function EducationSection() {
 
             <span className={`tl-content sticky-note-card neat-card-sm ${m.noteColor}`}>
               <span className="card-tape-corner" aria-hidden="true" />
+              <div className="tl-card-top-row">
+                <span className="tl-mobile-year">{m.year}</span>
+                <span className={`tl-badge ${m.badgeClass}`}>{m.badgeText}</span>
+              </div>
               <span className="tl-degree">{m.degree}</span>
               <span className="tl-inst">{m.inst}</span>
               <span className="tl-board">{m.board}</span>
-              <span className={`tl-badge ${m.badgeClass}`}>{m.badgeText}</span>
             </span>
           </li>
         ))}
