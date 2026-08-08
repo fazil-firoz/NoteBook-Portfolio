@@ -8,7 +8,9 @@ const MILESTONES = [
     inst:    'MES College of Engineering, Kuttippuram',
     board:   'APJ Abdul Kalam Technological University',
     side:    'from-right',
-    graduated: true,
+    badgeText: '🎓 MCA Graduate',
+    dotClass: 'current',
+    badgeClass: '',
     noteColor: 'note-cream',
   },
   {
@@ -17,7 +19,9 @@ const MILESTONES = [
     inst:    'Luminar Technolab, Kakkanad',
     board:   'National Council for Technology and Training',
     side:    'from-left',
-    cert:    true,
+    badgeText: '📜 Certified Expert',
+    dotClass: 'cert',
+    badgeClass: 'cert',
     noteColor: 'note-blue',
   },
   {
@@ -26,6 +30,9 @@ const MILESTONES = [
     inst:    'Majlis Arts and Science College, Puramannur',
     board:   'University of Calicut',
     side:    'from-right',
+    badgeText: '🎓 BCA Graduate',
+    dotClass: 'grad',
+    badgeClass: '',
     noteColor: 'note-yellow',
   },
   {
@@ -34,6 +41,9 @@ const MILESTONES = [
     inst:    'GJHSS Naduvattam',
     board:   'Kerala State Board',
     side:    'from-left',
+    badgeText: '📜 Certified',
+    dotClass: 'cert',
+    badgeClass: 'cert',
     noteColor: 'note-mint',
   },
 ]
@@ -61,7 +71,7 @@ export function EducationSection() {
 
             {/* dashed vertical connector */}
             <span className="tl-connector">
-              <span className={`tl-dot ${m.graduated ? 'current' : m.cert ? 'cert' : ''}`} />
+              <span className={`tl-dot ${m.dotClass}`} />
               <span className="tl-vline" />
             </span>
 
@@ -70,8 +80,7 @@ export function EducationSection() {
               <span className="tl-degree">{m.degree}</span>
               <span className="tl-inst">{m.inst}</span>
               <span className="tl-board">{m.board}</span>
-              {m.graduated && <span className="tl-badge">🎓 MCA Graduate</span>}
-              {m.cert      && <span className="tl-badge cert">📜 Certified</span>}
+              <span className={`tl-badge ${m.badgeClass}`}>{m.badgeText}</span>
             </span>
           </li>
         ))}
