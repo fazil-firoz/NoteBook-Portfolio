@@ -1301,45 +1301,67 @@ body {
 }
 
 /* ──────────────────────────────────────────────────────────────
-   19. FLOATING WHATSAPP BUTTON
+   19. FLOATING 3D WHATSAPP ICON BUTTON (3D PROJECTION + SWAY ANIMATION)
    ────────────────────────────────────────────────────────────── */
-.nb-whatsapp-float {
+.nb-whatsapp-3d-btn {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 999;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-sans);
-  font-size: 13px;
-  font-weight: 700;
-  color: #15803d;
-  background: #f0fdf4;
-  border: 1.5px solid rgba(22, 163, 74, 0.35);
-  padding: 8px 16px;
-  border-radius: 99px;
-  text-decoration: none;
-  box-shadow: 0 4px 16px rgba(22, 163, 74, 0.2), 0 2px 4px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-  transform: rotate(-1deg);
-}
-
-.nb-whatsapp-float:hover {
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
   color: #ffffff;
-  background: #16a34a;
-  border-color: #16a34a;
-  transform: rotate(0deg) translateY(-4px) scale(1.04);
-  box-shadow: 0 8px 24px rgba(22, 163, 74, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border: 2px solid #ffffff;
+
+  /* 3D Screen Projection Depth & Layered Tactile Shadow */
+  box-shadow:
+    0 12px 28px rgba(37, 211, 102, 0.45),
+    0 6px 14px rgba(0, 0, 0, 0.2),
+    inset 0 3px 4px rgba(255, 255, 255, 0.45),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.2);
+
+  /* Horizontal Swaying Animation */
+  animation: waSwayLeftRight 3s ease-in-out infinite;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
 }
 
-.nb-whatsapp-float .wa-icon {
-  font-size: 16px;
-  transition: transform 0.25s ease;
+/* Gentle Left-Right 3D Swaying Motion */
+@keyframes waSwayLeftRight {
+  0%, 100% {
+    transform: translateX(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateX(-6px) rotate(-8deg);
+  }
+  75% {
+    transform: translateX(6px) rotate(8deg);
+  }
 }
 
-.nb-whatsapp-float:hover .wa-icon {
-  transform: scale(1.2) rotate(-8deg);
+/* Hover 3D Projection Expansion */
+.nb-whatsapp-3d-btn:hover {
+  animation-play-state: paused;
+  transform: translateY(-8px) scale(1.12) rotate(0deg);
+  box-shadow:
+    0 18px 36px rgba(37, 211, 102, 0.55),
+    0 8px 18px rgba(0, 0, 0, 0.25),
+    inset 0 4px 6px rgba(255, 255, 255, 0.6);
+}
+
+.wa-3d-icon {
+  font-size: 26px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+  transition: transform 0.3s ease;
+}
+
+.nb-whatsapp-3d-btn:hover .wa-3d-icon {
+  transform: scale(1.15) rotate(-10deg);
 }
 
 /* ──────────────────────────────────────────────────────────────

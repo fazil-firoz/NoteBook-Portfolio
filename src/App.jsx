@@ -42,16 +42,16 @@ export default function App() {
         <ContactSection />
       </main>
 
-      {/* Floating WhatsApp Quick Connect Button */}
+      {/* Floating 3D WhatsApp Icon Button (Swaying Left-Right Motion + 3D Projection) */}
       <a
         href="https://wa.me/919048634881"
         target="_blank"
         rel="noreferrer"
-        className="nb-whatsapp-float"
+        className="nb-whatsapp-3d-btn"
         title="Chat on WhatsApp (+91 90486 34881)"
+        aria-label="Chat on WhatsApp"
       >
-        <span className="wa-icon">💬</span>
-        <span className="wa-text">Chat on WhatsApp</span>
+        <span className="wa-3d-icon" aria-hidden="true">💬</span>
       </a>
     </>
   )
