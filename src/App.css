@@ -1354,13 +1354,15 @@ body {
     inset 0 4px 6px rgba(255, 255, 255, 0.6);
 }
 
-.wa-3d-icon {
-  font-size: 26px;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+.wa-3d-svg {
+  width: 30px;
+  height: 30px;
+  color: #ffffff;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
   transition: transform 0.3s ease;
 }
 
-.nb-whatsapp-3d-btn:hover .wa-3d-icon {
+.nb-whatsapp-3d-btn:hover .wa-3d-svg {
   transform: scale(1.15) rotate(-10deg);
 }
 
