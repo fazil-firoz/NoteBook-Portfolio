@@ -89,9 +89,9 @@ body {
    ────────────────────────────────────────────────────────────── */
 .hero-section {
   position: relative;
-  min-height: 100vh;
+  min-height: auto;
   padding-top:    calc(var(--line) * 2);
-  padding-bottom: calc(var(--line) * 3);
+  padding-bottom: var(--line);
   padding-left:   var(--write-l);
   padding-right:  var(--write-r);
   display: flex;
@@ -473,7 +473,7 @@ body {
 .hero-bottom-rule {
   display: block;
   height: 2px;
-  margin-top: calc(var(--line) * 2);
+  margin-top: calc(var(--line) * 0.8);
   background: repeating-linear-gradient(
     to right,
     rgba(30,34,54,0.15) 0,
@@ -493,6 +493,11 @@ body {
   padding-bottom: calc(var(--line) * 3);
   padding-left:   var(--write-l);
   padding-right:  var(--write-r);
+}
+
+#about.nb-section {
+  min-height: auto;
+  padding-top: calc(var(--line) * 0.8);
 }
 
 .nb-section + .nb-section::before {

@@ -72,10 +72,6 @@ export function AboutSection() {
       <h2 className="section-heading">About Me</h2>
       <span className="heading-gap" />
 
-      {/* diary entry meta */}
-      {/* <span className="about-role">→ MCA Graduate · Software Engineer · Kochi, Kerala</span> */}
-      <span className="heading-gap" />
-
       <div className="about-body">
         {STORY.map((block, i) => (
           <div
