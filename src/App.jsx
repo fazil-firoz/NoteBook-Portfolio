@@ -1,11 +1,12 @@
 import './App.css'
-import { HeroSection }       from './components/HeroSection'
-import { AboutSection }      from './components/AboutSection'
-import { ExperienceSection } from './components/ExperienceSection'
-import { EducationSection }  from './components/EducationSection'
-import { ProjectsSection }   from './components/ProjectsSection'
-import { SkillsSection }     from './components/SkillsSection'
-import { ContactSection }    from './components/ContactSection'
+import { HeroSection }          from './components/HeroSection'
+import { AboutSection }         from './components/AboutSection'
+import { ExperienceSection }    from './components/ExperienceSection'
+import { EducationSection }     from './components/EducationSection'
+import { ProjectsSection }      from './components/ProjectsSection'
+import { SkillsSection }        from './components/SkillsSection'
+import { ContactSection }       from './components/ContactSection'
+import { FloatingSocialDock }   from './components/FloatingSocialDock'
 
 const NAV = [
   { label: 'About',      href: '#about'      },
@@ -41,6 +42,9 @@ export default function App() {
         <SkillsSection />
         <ContactSection />
       </main>
+
+      {/* 3D Floating Social Dock: Wheels from bottom-right to screen center at bottom end */}
+      <FloatingSocialDock />
     </>
   )
 }

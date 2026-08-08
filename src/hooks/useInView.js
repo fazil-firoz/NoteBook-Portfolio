@@ -12,6 +12,13 @@ export function useInView(options = {}) {
     const el = ref.current
     if (!el) return
 
+    // Immediate check if element is already in viewport
+    const rect = el.getBoundingClientRect()
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      setInView(true)
+      return
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -19,10 +26,17 @@ export function useInView(options = {}) {
           observer.disconnect()
         }
       },
-      { threshold: 0.1, rootMargin: '0px 0px -60px 0px', ...options }
+      { threshold: 0.05, rootMargin: '50px 0px', ...options }
     )
     observer.observe(el)
-    return () => observer.disconnect()
+
+    // Fallback: make visible after 800ms to prevent permanently hidden content
+    const timer = setTimeout(() => setInView(true), 800)
+
+    return () => {
+      observer.disconnect()
+      clearTimeout(timer)
+    }
   }, [])
 
   return [ref, inView]
