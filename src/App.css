@@ -712,6 +712,26 @@ body {
   padding-left: 10px;
 }
 
+/* Green Light Highlighter Pen Stroke Effect */
+.green-highlighter {
+  background: linear-gradient(104deg, rgba(134, 239, 172, 0.2) 0%, rgba(134, 239, 172, 0.85) 15%, rgba(134, 239, 172, 0.8) 85%, rgba(134, 239, 172, 0.25) 100%);
+  border-radius: 4px 14px 5px 12px / 6px 12px 4px 14px;
+  padding: 1px 8px 3px 8px;
+  margin: 0 2px;
+  font-weight: 700;
+  color: #052e16;
+  display: inline-block;
+  transform: rotate(-0.8deg);
+  box-shadow: inset 0 -2px 6px rgba(34, 197, 94, 0.25), 0 2px 5px rgba(34, 197, 94, 0.12);
+  transition: all 0.25s ease;
+}
+
+.green-highlighter:hover {
+  transform: rotate(0deg) scale(1.05);
+  background: linear-gradient(104deg, rgba(74, 222, 128, 0.3) 0%, rgba(74, 222, 128, 0.95) 15%, rgba(74, 222, 128, 0.9) 85%, rgba(74, 222, 128, 0.35) 100%);
+  box-shadow: inset 0 -2px 6px rgba(34, 197, 94, 0.35), 0 4px 10px rgba(34, 197, 94, 0.22);
+}
+
 .about-contacts-box-grid {
   display: flex;
   gap: 12px 16px;

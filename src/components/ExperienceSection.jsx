@@ -40,7 +40,7 @@ export function ExperienceSection() {
             </h3>
             <span className="exp-location">📍 Infopark, Kochi, Kerala, India</span>
           </div>
-          <span className="exp-date-badge">● 2024 – Present (1+ Year)</span>
+          <span className="exp-date-badge">● 2025 – Present (1+ Year)</span>
         </div>
 
         <span className="exp-role-title">

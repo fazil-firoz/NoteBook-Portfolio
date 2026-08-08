@@ -57,7 +57,12 @@ const STORY = [
   {
     chapter: null,
     margin: '♡',
-    text: " I believe something good is waiting ahead. And if life decides otherwise... well, I do have a Plan B. Although — between you and me, I'm secretly hoping I never have to use it. 😄",
+    text: (
+      <>
+        I believe something good is waiting ahead. And if life decides otherwise... well, I do have a{' '}
+        <mark className="green-highlighter">Plan B</mark>. Although — between you and me, I'm secretly hoping I never have to use it. 😄
+      </>
+    ),
   },
 ]
 
@@ -68,7 +73,7 @@ export function AboutSection() {
       <span className="heading-gap" />
 
       {/* diary entry meta */}
-      <span className="about-role">→ MCA Graduate · Software Engineer · Kochi, Kerala</span>
+      {/* <span className="about-role">→ MCA Graduate · Software Engineer · Kochi, Kerala</span> */}
       <span className="heading-gap" />
 
       <div className="about-body">
