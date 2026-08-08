@@ -9,7 +9,7 @@ const STORY = [
   {
     chapter: null,
     margin: null,
-    text: "That initial curiosity landed me in BCA. To be honest... I wasn't the brightest student. There were days when I barely understood what was happening in class. Yet somehow, assignment by assignment, exam by exam, I survived. Sometimes I still wonder how I graduated!",
+    text: "That initial curiosity landed me in BCA. To be honest... There were days when I barely understood what was happening in class. Yet somehow, assignment by assignment, exam by exam, I survived. Sometimes I still wonder how I graduated!",
   },
   {
     chapter: '— the detour',
@@ -101,7 +101,7 @@ export function AboutSection() {
         ))}
 
         {/* Neat Personal Details Dashboard Card matching notebook theme */}
-        <div className="about-dashboard-card sticky-note-card note-cream">
+        {/* <div className="about-dashboard-card sticky-note-card note-cream">
           <span className="card-tape-top" aria-hidden="true" />
           <span className="card-pin-icon" aria-hidden="true">📌</span>
 
@@ -150,7 +150,7 @@ export function AboutSection() {
               <span className="dash-val">English, Malayalam, Tamil</span>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </NbSection>
   )

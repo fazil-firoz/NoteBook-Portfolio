@@ -111,7 +111,7 @@ export function ContactSection() {
 
       <footer className="nb-footer">
         <p>
-          Designed &amp; Hand-Crafted with 💙 &amp; Notebook Vibes —{' '}
+          Designed &amp; Hand-Crafted with 💙 &amp; VibeCodes —{' '}
           <span className="footer-name">Fazil Firoz</span>
           &nbsp;© {new Date().getFullYear()}
         </p>
