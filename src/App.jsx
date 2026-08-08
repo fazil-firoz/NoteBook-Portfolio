@@ -41,6 +41,18 @@ export default function App() {
         <SkillsSection />
         <ContactSection />
       </main>
+
+      {/* Floating WhatsApp Quick Connect Button */}
+      <a
+        href="https://wa.me/919048634881"
+        target="_blank"
+        rel="noreferrer"
+        className="nb-whatsapp-float"
+        title="Chat on WhatsApp (+91 90486 34881)"
+      >
+        <span className="wa-icon">💬</span>
+        <span className="wa-text">Chat on WhatsApp</span>
+      </a>
     </>
   )
 }

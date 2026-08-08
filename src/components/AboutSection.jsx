@@ -95,13 +95,14 @@ export function AboutSection() {
           </div>
         ))}
 
-        {/* 4 contact items in a clean, aligned box view */}
+        {/* Contact items in a clean, aligned box view including WhatsApp wa.me */}
         <div className="about-contacts-box-grid">
           {[
-            { icon: '✉️', value: 'fazzilfiroz@gmail.com', href: 'mailto:fazzilfiroz@gmail.com', d: '0.1s' },
-            { icon: '📞', value: '+91 90486 34881',         href: 'tel:+919048634881',             d: '0.2s' },
-            { icon: '🐙', value: 'github.com/fazil-firoz', href: 'https://github.com/fazil-firoz', d: '0.3s' },
-            { icon: '💼', value: 'linkedin.com/in/fazzil-firoz', href: 'https://linkedin.com/in/fazzil-firoz', d: '0.4s' },
+            { icon: '💬', value: 'WhatsApp Chat',        href: 'https://wa.me/919048634881',   d: '0.1s' },
+            { icon: '✉️', value: 'fazzilfiroz@gmail.com', href: 'mailto:fazzilfiroz@gmail.com', d: '0.2s' },
+            { icon: '📞', value: '+91 90486 34881',         href: 'tel:+919048634881',             d: '0.3s' },
+            { icon: '🐙', value: 'github.com/fazil-firoz', href: 'https://github.com/fazil-firoz', d: '0.4s' },
+            { icon: '💼', value: 'linkedin: fazzil-firoz', href: 'https://linkedin.com/in/fazzil-firoz', d: '0.5s' },
           ].map(c => (
             <a
               key={c.value}

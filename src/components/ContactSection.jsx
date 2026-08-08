@@ -2,6 +2,14 @@ import { NbSection } from './NbSection'
 
 const CONTACT_ITEMS = [
   {
+    icon: '💬',
+    label: 'WhatsApp',
+    value: '+91 90486 34881',
+    href: 'https://wa.me/919048634881',
+    sub: 'Instant chat on WhatsApp',
+    noteColor: 'note-mint',
+  },
+  {
     icon: '✉️',
     label: 'Email',
     value: 'fazzilfiroz@gmail.com',

@@ -1301,7 +1301,49 @@ body {
 }
 
 /* ──────────────────────────────────────────────────────────────
-   18. RESPONSIVE
+   19. FLOATING WHATSAPP BUTTON
+   ────────────────────────────────────────────────────────────── */
+.nb-whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  color: #15803d;
+  background: #f0fdf4;
+  border: 1.5px solid rgba(22, 163, 74, 0.35);
+  padding: 8px 16px;
+  border-radius: 99px;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(22, 163, 74, 0.2), 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: rotate(-1deg);
+}
+
+.nb-whatsapp-float:hover {
+  color: #ffffff;
+  background: #16a34a;
+  border-color: #16a34a;
+  transform: rotate(0deg) translateY(-4px) scale(1.04);
+  box-shadow: 0 8px 24px rgba(22, 163, 74, 0.35);
+}
+
+.nb-whatsapp-float .wa-icon {
+  font-size: 16px;
+  transition: transform 0.25s ease;
+}
+
+.nb-whatsapp-float:hover .wa-icon {
+  transform: scale(1.2) rotate(-8deg);
+}
+
+/* ──────────────────────────────────────────────────────────────
+   20. RESPONSIVE
    ────────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   :root { --margin-x: 44px; --write-l: calc(var(--margin-x) + 16px); }
