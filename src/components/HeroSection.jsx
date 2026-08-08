@@ -40,22 +40,6 @@ export function HeroSection() {
             <em className="hero-em">C# · ASP.NET Core · React · Python (Django) · SQL</em>
           </span> */}
 
-          {/* Single Elegant Resume Download Button below Designation */}
-          <div className="hero-resume-wrap">
-            <a
-              href="https://drive.google.com/uc?export=download&id=1IkHdtZ_NiDw6oqCEv-06q8TGZoNhUhlZ"
-              download="Fazil Firoz's Resume.pdf"
-              target="_blank"
-              rel="noreferrer"
-              className="hero-resume-elegant-btn"
-              title="Download Fazil Firoz's Resume"
-            >
-              <span className="resume-icon" aria-hidden="true">📥</span>
-              <span className="resume-text">Download Resume</span>
-              <span className="resume-arrow" aria-hidden="true">↓</span>
-            </a>
-          </div>
-
           {/* Degree badge — stamp style */}
           <div className="hero-stamp" role="img" aria-label="MCA Certified">
             <span className="hero-stamp-line1">MCA</span>
@@ -67,6 +51,22 @@ export function HeroSection() {
           <span className="hero-scroll-hint" aria-hidden="true">
             ↓ scroll to explore notebook
           </span>
+
+          {/* Minimal Resume Download Button placed BELOW scroll hint */}
+          <div className="hero-resume-wrap">
+            <a
+              href="https://drive.google.com/uc?export=download&id=1IkHdtZ_NiDw6oqCEv-06q8TGZoNhUhlZ"
+              download="Fazil Firoz's Resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="hero-resume-minimal-btn"
+              title="Download Fazil Firoz's Resume"
+            >
+              <span className="resume-icon" aria-hidden="true">📄</span>
+              <span className="resume-text">Download Resume</span>
+              <span className="resume-arrow" aria-hidden="true">↓</span>
+            </a>
+          </div>
         </div>
 
         {/* RIGHT — passport photo glued on paper */}

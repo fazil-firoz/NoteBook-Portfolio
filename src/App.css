@@ -211,50 +211,51 @@ body {
   font-weight: 700;
 }
 
-/* Single Elegant Resume Download Button below Designation */
+/* Minimal Resume Download Button placed below scroll hint */
 .hero-resume-wrap {
-  margin-top: 12px;
+  margin-top: 14px;
   display: flex;
   align-items: center;
   opacity: 0;
-  animation: fadeSlideUp 0.55s ease 1.0s forwards;
+  animation: fadeSlideUp 0.55s ease 2.2s forwards;
 }
 
-.hero-resume-elegant-btn {
+.hero-resume-minimal-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
-  color: #ffffff;
-  background: var(--ink);
-  padding: 6px 14px;
+  color: var(--ink-mid);
+  background: rgba(30, 34, 54, 0.04);
+  border: 1px dashed rgba(30, 34, 54, 0.22);
+  padding: 5px 12px;
   border-radius: 6px;
   text-decoration: none;
-  box-shadow: 0 2px 8px rgba(30, 34, 54, 0.16);
-  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
-  border: 1px solid rgba(30, 34, 54, 0.2);
+  transition: all 0.25s ease;
 }
 
-.hero-resume-elegant-btn:hover {
-  background: var(--ink-blue);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(30, 58, 138, 0.25);
+.hero-resume-minimal-btn:hover {
   color: #ffffff;
+  background: var(--ink-red);
+  border-color: var(--ink-red);
+  border-style: solid;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(185, 28, 28, 0.18);
 }
 
-.hero-resume-elegant-btn .resume-icon {
-  font-size: 14px;
-}
-
-.hero-resume-elegant-btn .resume-arrow {
+.hero-resume-minimal-btn .resume-icon {
   font-size: 13px;
-  opacity: 0.8;
+}
+
+.hero-resume-minimal-btn .resume-arrow {
+  font-size: 12px;
+  opacity: 0.75;
   transition: transform 0.2s ease;
 }
 
-.hero-resume-elegant-btn:hover .resume-arrow {
+.hero-resume-minimal-btn:hover .resume-arrow {
   transform: translateY(2px);
 }
 
