@@ -732,64 +732,77 @@ body {
   box-shadow: inset 0 -2px 6px rgba(34, 197, 94, 0.35), 0 4px 10px rgba(34, 197, 94, 0.22);
 }
 
-.about-contacts-box-grid {
-  display: flex;
-  gap: 12px 16px;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-top: calc(var(--line) * 1.2);
-  max-width: 860px;
+/* About Section Personal Details Dashboard Card */
+.about-dashboard-card {
+  margin-top: calc(var(--line) * 1.5);
+  max-width: 840px;
   width: 100%;
-}
-
-.about-contact-box {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-sans);
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--ink-blue);
-  background: rgba(30, 58, 138, 0.05);
-  border: 1px solid rgba(30, 58, 138, 0.16);
-  padding: 10px 18px;
+  padding: 24px 28px;
+  background: #fffdf5;
+  border: 1px solid rgba(30, 34, 54, 0.16);
   border-radius: 8px;
-  text-decoration: none;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 4px 18px rgba(30, 34, 54, 0.08);
   opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0s);
+  transform: translateY(14px);
+  transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
 }
 
-.nb-section.visible .about-contact-box {
+.nb-section.visible .about-dashboard-card {
   opacity: 1;
   transform: translateY(0);
 }
 
-.about-contact-box:hover {
-  color: var(--ink-red);
-  background: #ffffff;
-  border-color: var(--ink-red);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 18px rgba(185, 28, 28, 0.14);
-}
-
-.contact-box-icon {
-  font-size: 18px;
-  flex-shrink: 0;
-  transition: transform 0.25s ease;
-}
-
-.about-contact-box:hover .contact-box-icon {
-  transform: scale(1.2);
-}
-
-.contact-box-text {
+.about-dash-title {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.3px;
+  border-bottom: 1.5px dashed rgba(30, 34, 54, 0.15);
+  padding-bottom: 10px;
+}
+
+.about-dash-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px 24px;
+}
+
+.dash-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dash-label {
+  font-family: var(--font-sans);
+  font-size: 12px;
   font-weight: 600;
-  white-space: nowrap;
-  letter-spacing: 0.2px;
+  color: var(--ink-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dash-val {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink-blue);
+}
+
+a.dash-link {
+  color: var(--ink-blue);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a.dash-link:hover {
+  color: var(--ink-red);
+  text-decoration: underline;
 }
 
 /* ──────────────────────────────────────────────────────────────

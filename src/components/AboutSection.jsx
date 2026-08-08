@@ -100,27 +100,56 @@ export function AboutSection() {
           </div>
         ))}
 
-        {/* Contact items in a clean, aligned box view including WhatsApp wa.me */}
-        <div className="about-contacts-box-grid">
-          {[
-            { icon: '💬', value: 'WhatsApp Chat',        href: 'https://wa.me/919048634881',   d: '0.1s' },
-            { icon: '✉️', value: 'fazzilfiroz@gmail.com', href: 'mailto:fazzilfiroz@gmail.com', d: '0.2s' },
-            { icon: '📞', value: '+91 90486 34881',         href: 'tel:+919048634881',             d: '0.3s' },
-            { icon: '🐙', value: 'github.com/fazil-firoz', href: 'https://github.com/fazil-firoz', d: '0.4s' },
-            { icon: '💼', value: 'linkedin: fazzil-firoz', href: 'https://linkedin.com/in/fazzil-firoz', d: '0.5s' },
-          ].map(c => (
-            <a
-              key={c.value}
-              href={c.href}
-              target="_blank"
-              rel="noreferrer"
-              className="about-contact-box"
-              style={{ '--d': c.d }}
-            >
-              <span className="contact-box-icon">{c.icon}</span>
-              <span className="contact-box-text">{c.value}</span>
-            </a>
-          ))}
+        {/* Neat Personal Details Dashboard Card matching notebook theme */}
+        <div className="about-dashboard-card sticky-note-card note-cream">
+          <span className="card-tape-top" aria-hidden="true" />
+          <span className="card-pin-icon" aria-hidden="true">📌</span>
+
+          <h3 className="about-dash-title">
+            📋 Quick Personal Details
+          </h3>
+
+          <div className="about-dash-grid">
+            <div className="dash-item">
+              <span className="dash-label">👤 Full Name</span>
+              <span className="dash-val">Fazil Firoz</span>
+            </div>
+
+            <div className="dash-item">
+              <span className="dash-label">🎂 Date of Birth</span>
+              <span className="dash-val">31 May 2002</span>
+            </div>
+
+            <div className="dash-item">
+              <span className="dash-label">💍 Marital Status</span>
+              <span className="dash-val">Single</span>
+            </div>
+
+            <div className="dash-item">
+              <span className="dash-label">📱 Mobile / Phone</span>
+              <a href="tel:+919048634881" className="dash-val dash-link">+91 90486 34881</a>
+            </div>
+
+            <div className="dash-item">
+              <span className="dash-label">✉️ Email</span>
+              <a href="mailto:fazzilfiroz@gmail.com" className="dash-val dash-link">fazzilfiroz@gmail.com</a>
+            </div>
+
+            <div className="dash-item">
+              <span className="dash-label">🎓 Qualification</span>
+              <span className="dash-val">Master of Computer Applications (MCA)</span>
+            </div>
+
+            <div className="dash-item">
+              <span className="dash-label">📍 Location</span>
+              <span className="dash-val">Kulukkallur, Palakkad, Kerala</span>
+            </div>
+
+            <div className="dash-item">
+              <span className="dash-label">🗣️ Languages</span>
+              <span className="dash-val">English, Malayalam, Tamil</span>
+            </div>
+          </div>
         </div>
       </div>
     </NbSection>
