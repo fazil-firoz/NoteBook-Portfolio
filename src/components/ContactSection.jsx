@@ -82,7 +82,7 @@ export function ContactSection() {
             rel="noreferrer"
             className="contact-resume-btn"
           >
-            📎 Request / Download Resume
+            📎 Download Resume
           </a>
         </div>
 
