@@ -245,6 +245,15 @@ body {
   box-shadow: 0 4px 12px rgba(185, 28, 28, 0.18);
 }
 
+.hero-resume-minimal-btn.download-done {
+  background: var(--ink-green, #166534);
+  color: #ffffff;
+  border-color: var(--ink-green, #166534);
+  border-style: solid;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(22, 101, 52, 0.25);
+}
+
 .hero-resume-minimal-btn .resume-icon {
   font-size: 13px;
 }
@@ -257,6 +266,34 @@ body {
 
 .hero-resume-minimal-btn:hover .resume-arrow {
   transform: translateY(2px);
+}
+
+/* Flying Data particles to top right corner for visual satisfaction */
+.flying-particle {
+  position: fixed;
+  z-index: 9999;
+  font-size: 22px;
+  pointer-events: none;
+  left: var(--start-x);
+  top: var(--start-y);
+  animation: flyToTopRight 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--delay, 0ms);
+  filter: drop-shadow(0 4px 12px rgba(185, 28, 28, 0.4));
+}
+
+@keyframes flyToTopRight {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  45% {
+    opacity: 1;
+    transform: translate(calc(var(--delta-x) * 0.45), calc(var(--delta-y) * 0.35 - 35px)) scale(1.4) rotate(-25deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--delta-x), var(--delta-y)) scale(0.2) rotate(45deg);
+  }
 }
 
 /* MCA stamp badge */

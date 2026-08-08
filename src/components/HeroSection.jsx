@@ -1,9 +1,46 @@
 /* ================================================================
    HERO SECTION — Notebook-style intro with passport-photo effect
-   Photo glued on paper like a real notebook/diary entry + Resume Button & Social Links
+   Photo glued on paper like a real notebook/diary entry + Resume Download
    ================================================================ */
+import { useState } from 'react'
 
 export function HeroSection() {
+  const [downloadState, setDownloadState] = useState('idle') // 'idle' | 'flying' | 'done'
+  const [particles, setParticles] = useState([])
+
+  const handleResumeClick = (e) => {
+    // Get button position
+    const rect = e.currentTarget.getBoundingClientRect()
+    const startX = rect.left + rect.width / 2
+    const startY = rect.top + rect.height / 2
+
+    // Target top right corner (where browser downloads bar is)
+    const targetX = window.innerWidth - 70
+    const targetY = 30
+
+    const deltaX = targetX - startX
+    const deltaY = targetY - startY
+
+    // Spawn flying visual satisfaction particles
+    const newParticles = [
+      { id: 1, icon: '📄', startX, startY, deltaX, deltaY, delay: '0ms' },
+      { id: 2, icon: '✨', startX: startX - 12, startY: startY - 8, deltaX: deltaX - 15, deltaY: deltaY + 10, delay: '90ms' },
+      { id: 3, icon: '⚡', startX: startX + 12, startY: startY + 8, deltaX: deltaX + 15, deltaY: deltaY - 10, delay: '180ms' },
+    ]
+
+    setParticles(newParticles)
+    setDownloadState('flying')
+
+    setTimeout(() => {
+      setDownloadState('done')
+    }, 750)
+
+    setTimeout(() => {
+      setDownloadState('idle')
+      setParticles([])
+    }, 2800)
+  }
+
   return (
     <section className="hero-section" id="home" aria-label="Introduction">
 
@@ -15,12 +52,6 @@ export function HeroSection() {
 
         {/* LEFT — handwritten intro text */}
         <div className="hero-text">
-
-          {/* Date stamp & location */}
-          {/* <div className="hero-meta-row">
-            <span className="hero-date">August, 2025</span>
-            <span className="hero-loc">📍 Kochi, Kerala, India</span>
-          </div> */}
 
           {/* Greeting */}
           <h1 className="hero-greeting">
@@ -34,12 +65,6 @@ export function HeroSection() {
             Junior Software Engineer &amp; MCA Graduate
           </span>
 
-          {/* Sub-tagline */}
-          {/* <span className="hero-tagline">
-            Specializing in{' '}
-            <em className="hero-em">C# · ASP.NET Core · React · Python (Django) · SQL</em>
-          </span> */}
-
           {/* Degree badge — stamp style */}
           <div className="hero-stamp" role="img" aria-label="MCA Certified">
             <span className="hero-stamp-line1">MCA</span>
@@ -52,19 +77,26 @@ export function HeroSection() {
             ↓ scroll to explore notebook
           </span>
 
-          {/* Minimal Resume Download Button placed BELOW scroll hint */}
+          {/* Minimal Resume Download Button with Flying Data animation */}
           <div className="hero-resume-wrap">
             <a
               href="https://drive.google.com/uc?export=download&id=1IkHdtZ_NiDw6oqCEv-06q8TGZoNhUhlZ"
               download="Fazil Firoz's Resume.pdf"
               target="_blank"
               rel="noreferrer"
-              className="hero-resume-minimal-btn"
+              onClick={handleResumeClick}
+              className={`hero-resume-minimal-btn ${downloadState === 'done' ? 'download-done' : ''}`}
               title="Download Fazil Firoz's Resume"
             >
-              <span className="resume-icon" aria-hidden="true">📄</span>
-              <span className="resume-text">Download Resume</span>
-              <span className="resume-arrow" aria-hidden="true">↓</span>
+              <span className="resume-icon" aria-hidden="true">
+                {downloadState === 'done' ? '✓' : '📄'}
+              </span>
+              <span className="resume-text">
+                {downloadState === 'done' ? 'Downloaded!' : 'Download Resume'}
+              </span>
+              <span className="resume-arrow" aria-hidden="true">
+                {downloadState === 'done' ? '✨' : '↓'}
+              </span>
             </a>
           </div>
         </div>
@@ -74,8 +106,6 @@ export function HeroSection() {
           {/* Tape strips — decorative */}
           <span className="hero-tape hero-tape-tl" />
           <span className="hero-tape hero-tape-tr" />
-          <span className="hero-tape hero-tape-bl" />
-          <span className="hero-tape hero-tape-br" />
 
           {/* Photo frame */}
           <div className="hero-photo-frame">
@@ -86,12 +116,27 @@ export function HeroSection() {
               draggable="false"
             />
           </div>
-
-          {/* Caption under photo */}
-          <span className="hero-photo-caption">Fazil Firoz · MCA '25</span>
         </div>
 
       </div>
+
+      {/* ── Flying Data Particles (Visual Satisfaction on Download) ── */}
+      {particles.map(p => (
+        <span
+          key={p.id}
+          className="flying-particle"
+          style={{
+            '--start-x': `${p.startX}px`,
+            '--start-y': `${p.startY}px`,
+            '--delta-x': `${p.deltaX}px`,
+            '--delta-y': `${p.deltaY}px`,
+            '--delay': p.delay,
+          }}
+          aria-hidden="true"
+        >
+          {p.icon}
+        </span>
+      ))}
 
       {/* ── bottom decorative dashed line ── */}
       <span className="hero-bottom-rule" aria-hidden="true" />
