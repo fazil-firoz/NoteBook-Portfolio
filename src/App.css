@@ -1367,6 +1367,48 @@ body {
 }
 
 /* ──────────────────────────────────────────────────────────────
+   20. BOTTOM ORBITAL 3D SOCIAL DOCK (WHEELS & BURSTS AT BOTTOM)
+   ────────────────────────────────────────────────────────────── */
+.bottom-dock-container {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.bottom-dock-center-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dock-3d-btn {
+  position: absolute;
+  pointer-events: auto;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border: 2px solid #ffffff;
+  transform-origin: center center;
+}
+
+.dock-icon-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* ──────────────────────────────────────────────────────────────
    20. RESPONSIVE
    ────────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
